@@ -1,0 +1,125 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  color: white;
+}
+
+.background,
+.header,
+.title {
+  height: 40vh;
+  min-height: 300px;
+  max-height: 450px;
+}
+
+.background {
+  overflow: hidden;
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  color: white;
+  text-shadow: 0 0 10px #000000b5, 0 0 10px #000000b5;
+}
+
+.title {
+  margin: 0 auto;
+}
+
+.face {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  transform: translate(0, -90%);
+  border: 10px solid;
+  border-radius: 50%;
+}
+
+// .experience {
+//   color: white;
+//   height: 50vh;
+//   min-height: 400px;
+//   margin: 0 2rem;
+// }
+
+h1 {
+  padding-top: 3rem;
+  margin: 1rem auto;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.tech {
+  background-color: white;
+  padding: 6rem;
+  color: gray;
+}
+
+.experience {
+  margin-top: 10px;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem auto;
+  flex-wrap: wrap;
+  max-width: 1000px;
+
+  .card {
+    width: 220px;
+    padding: 40px;
+  }
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 550px;
+  margin: 0 auto;
+
+  span {
+    white-space: nowrap;
+    margin: 0 10px;
+  }
+}
+
+.dokter {
+  margin: 1rem;
+}
+
+.address {
+  margin: .25rem;
+}
+
+.options {
+  margin: .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cover {
+  height: 100%;
+}
+
+.fax {
+  margin: .5rem;
+  font-size: 0.8rem;
+}
+
+img {
+  background-color: white;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  object-fit: contain;
+}

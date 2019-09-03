@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
+import {IconService} from './services/icon.service';
+
+@Component({selector: 'svo-root', templateUrl: './app.component.html'})
 export class AppComponent {
-  title = 'stevevanopstal';
+  constructor(public icons: IconService) {}
 }

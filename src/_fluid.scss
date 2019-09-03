@@ -1,0 +1,25 @@
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid($min, $max, $min-vw: $breakpoint-min, $max-vw: $breakpoint-max) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min);
+  $u4: unit($max);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    $value: calc(#{$min} + (#{strip-unit($max - $min)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})));
+    & {
+      @content($min);
+
+      @media (min-width: $min-vw) {
+        @content($value);
+      }
+
+      @media (min-width: $max-vw) {
+        @content($max);
+      }
+    }
+  }
+}
