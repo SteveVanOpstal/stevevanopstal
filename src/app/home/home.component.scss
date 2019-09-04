@@ -1,3 +1,6 @@
+@import "../../fluid";
+@import "../../theme";
+
 :host {
   display: flex;
   flex-direction: column;
@@ -39,27 +42,43 @@
   border-radius: 50%;
 }
 
-// .experience {
-//   color: white;
-//   height: 50vh;
-//   min-height: 400px;
-//   margin: 0 2rem;
-// }
-
 h1 {
   padding-top: 3rem;
-  margin: 1rem auto;
-  font-size: 2.5rem;
+  margin-bottom: 1rem;
+
+  @include fluid(32px, 48px, 320px, 1024px) using ($value) {
+    font-size: $value;
+  }
 }
 
 h2 {
+  font-size: 1.5rem;
+
+  @include fluid(24px, 32px, 320px, 1024px) using ($value) {
+    font-size: $value;
+  }
+}
+
+h3 {
   font-size: 1.2rem;
+
+  @include fluid(18px, 24px, 320px, 1024px) using ($value) {
+    font-size: $value;
+  }
+}
+
+p {
+  font-size: 1rem;
+
+  @include fluid(14px, 18px, 320px, 1024px) using ($value) {
+    font-size: $value;
+  }
 }
 
 .tech {
   background-color: white;
   padding: 6rem;
-  color: gray;
+  color: $primary;
 }
 
 .experience {
@@ -67,15 +86,27 @@ h2 {
 }
 
 .cards {
-  display: flex;
-  justify-content: space-evenly;
+  display: inline-grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) [last-col] 0px;
+  grid-template-rows: auto [last-line];
   margin: 1rem auto;
-  flex-wrap: wrap;
-  max-width: 1000px;
+  padding: 2rem;
+  width: 80vw;
+  max-width: 980px;
+  margin-right: -4px;
 
   .card {
-    width: 220px;
-    padding: 40px;
+    border-right: 2px solid;
+    padding: 0 2rem;
+    margin: 2rem 0;
+  }
+
+  .filler {
+    grid-column: last-col / span 1;
+    grid-row: 1 / last-line;
+    grid-row-start: span 9000;
+    border-left: 4px solid $primary;
+    margin-left: -3px;
   }
 }
 
@@ -89,6 +120,15 @@ h2 {
   span {
     white-space: nowrap;
     margin: 0 10px;
+
+    &:last-child:after{
+      content: initial;
+    }
+
+    &:after {
+      content: '-';
+      margin-left: 1.2rem;
+    }
   }
 }
 
@@ -118,8 +158,8 @@ h2 {
 
 img {
   background-color: white;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto;
   object-fit: contain;
 }

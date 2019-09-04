@@ -1,24 +1,21 @@
-@import '~@angular/material/theming';
+// @import '~@angular/material/theming';
 @import './fluid';
+@import './theme';
 
-@include mat-core();
+// @include mat-core();
 
-$primary: mat-palette($mat-cyan, 900);
-$accent:  mat-palette($mat-blue-gray);
-$theme:   mat-light-theme($primary, $accent);
+// $primary: mat-palette($mat-cyan, 900);
+// $accent:  mat-palette($mat-blue-gray);
+// $theme:   mat-light-theme($primary, $accent);
 
-@include angular-material-theme($theme);
+// @include angular-material-theme($theme);
 
 [class^=mat-button] mat-icon {
   margin-top: -2px;
 }
 
-html {
-  @include fluid(16px, 20px, 320px, 1200px);
-}
-
 body {
-  background-color: gray;
+  background-color: $primary;
   font-family: Montserrat, sans-serif;
   font-display: fallback;
   margin: 0;
@@ -28,20 +25,20 @@ body {
   font-size: 0.8rem;
 }
 
-.primary,
-.mat-raised-button.primary {
-  background-color: white;
-  color: mat-color($primary, default);
-  color: #2a5b81;
-  color: #988f76;
-}
+// .primary,
+// .mat-raised-button.primary {
+//   background-color: white;
+//   // color: mat-color($primary, default);
+//   color: #2a5b81;
+//   color: #988f76;
+// }
 
-.background-green {
-  background-color: mat-color($primary, default);
-  background-color: #2a5b81;
-  background-color: #988f76;
-  // box-shadow: 0 0 10px 2px #aaa;
-}
+// .background-green {
+//   background-color: mat-color($primary, default);
+//   background-color: #2a5b81;
+//   background-color: #988f76;
+//   // box-shadow: 0 0 10px 2px #aaa;
+// }
 
 @font-face {
   font-family: 'Montserrat';
