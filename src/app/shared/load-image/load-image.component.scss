@@ -13,5 +13,7 @@ img {
     opacity: 1;
     transition: opacity 1s;
     height: 40vh;
+    min-height: 300px;
+    max-height: 450px;
   }
 }
