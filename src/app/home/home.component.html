@@ -1,103 +1,126 @@
-<svo-load-image class="background" src="/assets/images/cover.png" srcset="" srcThumb="/thumbs/cover.png" alt="island by the sea"></svo-load-image>
+<svo-load-image class="background" src="/cover" srcThumb="/thumbs/cover.png" alt="island in the sea"
+  srcset="/cover?size=320 320w, /cover?size=425 425w, /cover?size=768 768w, /cover?size=1024 1024w, /cover?size=1440 1440w"
+  sizes="(max-width: 320px) 320px, (max-width: 425px) 425px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1440px" >
+</svo-load-image>
 
 <section class="header">
   <div class="title">
     <h1>Steve Van Opstal</h1>
     <p>Takes care of all your programming needs</p>
   </div>
-  <img class="face" src="/assets/images/face.png" />
+  <img class="face" src="/assets/images/face.png" alt="close up of Steve Van Opstal" />
 </section>
+
+<div class="degree">
+  <p>Bachelor Applied Computer Science</p>
+  <p>Thomas More Universty</p>
+</div>
 
 <section class="tech">
-  <p>Fluent in</p>
-  <h2 class="tags">
-    <span>Angular</span>
-    <span>Vue</span>
-    <span>RxJS</span>
-    <span>NGXS</span>
-    <span>JavaScript</span>
-    <span>TypeScript</span>
-    <span>HTML 5</span>
-    <span>CSS 3</span>
-    <span>Sass</span>
-    <span>Docker</span>
-    <span>Kubernetes</span>
-    <span>NGINX</span>
-    <span>Java</span>
-    <span>C/C++</span>
-    <span>Python</span>
-  </h2>
-</section>
-
-<section class="experience">
-  <h3>Experience</h3>
-  <div class="cards">
-    <div class="card">
-      <img src="/assets/images/aztrix.png" />
-      <h3>Aztrix*</h3>
-      <h4 class="tags">
-        <span>Angular</span>
-        <span>Java</span>
-      </h4>
-      <p>Smart address book for individuals and organisations, respecting privacy.</p>
-    </div>
-    <div class="card">
-      <img src="/assets/images/basf.png" />
-      <h3>BASF - Crop Design</h3>
-      <h4 class="tags">
-        <span>Angular</span>
-        <span>Node.js</span>
-        <span>Java</span>
-      </h4>
-      <p>Development on the BASF bioscience internal AppStore and bioscience related apps.</p>
-    </div>
-    <div class="card">
-      <img src="/assets/images/ometa.png" />
-      <h3>Ometa</h3>
-      <h4 class="tags">
-        <span>Angular.js</span>
-      </h4>
-      <p></p>
-    </div>
-    <div class="card">
-      <img src="/assets/images/qipc.png" />
-      <h3>Q.I. Press Controls</h3>
-      <h4 class="tags">
-        <span>C++</span>
-      </h4>
-      <p>Development of closed loop control systems for industrial printing presses.</p>
-    </div>
-    <div class="card">
-      <img src="/assets/images/tokheim.png" />
-      <h3>Tokheim</h3>
-      <h4 class="tags">
-        <span>C++</span>
-      </h4>
-      <p>Development and maintenance on the OASE system. OASE (Online Authorization Server Environment) receives and processes roughly 32 million transactions a month for more than 20,000 fuel stations in 33 countries.</p>
-    </div>
-    <div class="card">
-      <img src="/assets/images/schwann.png" />
-      <h3>Schwann</h3>
-      <h4 class="tags">
-        <span>UX</span>
-        <span>PHP</span>
-        <span>Drupal</span>
-      </h4>
-      <p>tui.cn</p>
-    </div>
-    <div class="filler"></div>
+  <div class="category">
+    <p>Fluent in</p>
+    <h2 class="tags">
+      <span>Angular</span>
+      <span>RxJS</span>
+      <span>JavaScript</span>
+      <span>TypeScript</span>
+      <span>HTML 5</span>
+      <span>CSS 3</span>
+      <span>Sass</span>
+    </h2>
+  </div>
+  <div class="category">
+    <p>Practical experience with</p>
+    <h2 class="tags">
+      <span>Cordova</span>
+      <span>Server-side rendering</span>
+      <span>Vue</span>
+      <span>Docker</span>
+      <span>Kubernetes</span>
+      <span>NGINX</span>
+      <span>Java</span>
+      <span>C/C++</span>
+      <span>Python</span>
+    </h2>
+  </div>
+  <div class="category">
+    <p>Things I like and would like to spend more time on</p>
+    <h2 class="tags">
+      <span>Flutter</span>
+      <span>frontend ML</span>
+      <span>Web Components</span>
+      <span>Web Workers</span>
+      <span>WebAssembly</span>
+      <span>UX</span>
+      <span>Microservices</span>
+      <span>NoSQL</span>
+    </h2>
   </div>
 </section>
 
-<!-- <h2>
-  Things I like and would like to do more of
-  <span>Flutter</span>
-  <span>frontend ML</span>
-  <span>Web Components</span>
-  <span>Web Workers</span>
-  <span>WebAssembly</span>
-  <span>CQRS/Redux</span>
-  <span>UX</span>
-  <span>Microservices</span>
-  <span>NoSQL</span>
-</h2> -->
+<section class="experience">
+  <h3>Projects</h3>
+  <div class="cards">
+    <div class="card">
+      <img src="/assets/images/aztrix.png" alt="Aztrix logo" />
+      <p>1 year 1 month</p>
+      <a href="https://aztrix.me">aztrix.me</a>
+      <div class="tags">
+        <span>Angular</span>
+        <span>Cordova</span>
+        <span>Java</span>
+      </div>
+      <p class="description">Aztrix* is an address book app with privacy in mind. I'm currently working here as a frontend developer and scrum master. This startup has a small development team which allows me to be involved in most of the process.</p>
+    </div>
+    <div class="card">
+      <img src="/assets/images/basf.png" alt="BASF logo" />
+      <p>1 year</p>
+      <a href="http://cropdesign.com">cropdesign.com</a>
+      <div class="tags">
+        <span>Angular</span>
+        <span>Node.js</span>
+        <span>Java</span>
+      </div>
+      <p class="description">An internal project for BASF international research. The BASF AppStore became their goto application for automatic project setup, version management, documentation, etc. I mostly worked on the frontend of the app.</p>
+    </div>
+    <div class="card">
+      <img src="/assets/images/ometa.png" alt="Ometa logo" />
+      <p>3 months</p>
+      <a href="https://website.ometa.net">website.ometa.net</a>
+      <div class="tags">
+        <span>Angular.js</span>
+        <span>Angular</span>
+      </div>
+      <p class="description">Consulted on moving their old Angular.js components to the new Angular and embedding those in the SharePoint ecosystem.</p>
+    </div>
+    <div class="card">
+      <img src="/assets/images/qipc.png" alt="QIPC logo" />
+      <p>1 year 7 months</p>
+      <a href="https://www.qipc.com">qipc.com</a>
+      <div class="tags">
+        <span>C++</span>
+      </div>
+      <p class="description">R&D on their closed loop control systems for industrial printing presses. Most of my time there was spent on improving camera calibration and vision.</p>
+    </div>
+    <div class="card">
+      <img src="/assets/images/tokheim.png" alt="Tokheim logo" />
+      <p>3 years 1 month</p>
+      <a href="http://tokheim.com">tokheim.com</a>
+      <div class="tags">
+        <span>C++</span>
+      </div>
+      <p class="description">Improved the OASE system together with my colleagues. OASE (Online Authorization Server Environment) receives and processes roughly 32 million transactions a month for more than 20,000 fuel stations in 33 countries.</p>
+    </div>
+    <div class="card">
+      <img src="/assets/images/schwann.png" alt="Schwann logo" />
+      <p>3 months</p>
+      <a href="https://www.facebook.com/SchwannChina/">facebook.com/SchwannChina</a>
+      <div class="tags">
+        <span>UX</span>
+        <span>PHP</span>
+        <span>Drupal</span>
+      </div>
+      <p class="description">Created the frontend for the Chinese <a href="http://tui.cn/en/">Tui.cn</a> website including several UX/UI projects and I still had enough time to have a good time along the way.</p>
+    </div>
+  </div>
+</section>

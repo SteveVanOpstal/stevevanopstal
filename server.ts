@@ -5,29 +5,25 @@ import {enableProdMode} from '@angular/core';
 import {renderModuleFactory} from '@angular/platform-server';
 import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 import express from 'express';
-import {existsSync, readdir, readFileSync, writeFileSync} from 'fs';
-import Jimp from 'jimp';
+import {readdir, readFileSync} from 'fs';
+import Jimp from 'jimp/es';
 import {join} from 'path';
 
 enableProdMode();
 
-const data_FILE = './data.json';
+// Express server
+const app = express();
 
-if (!existsSync(data_FILE)) {
-  writeFileSync(data_FILE, '{}');
-}
+app.use(compression());
 
-let data = {};
-try {
-  data = JSON.parse(readFileSync(data_FILE, {encoding: 'utf8'}));
-  console.log(data);
-} catch {
-}
+const PORT = process.env.PORT || 3000;
+const DIST_FOLDER = join(process.cwd(), 'dist');
 
 // thumbs
 const thumbs = [];
-readdir('dist/browser/assets/images', (err, filenames) => {
+readdir(join(DIST_FOLDER, 'browser', 'assets', 'images'), (err, filenames) => {
   if (err) {
     console.error(err);
     process.exit(1);
@@ -36,26 +32,24 @@ readdir('dist/browser/assets/images', (err, filenames) => {
     Jimp.read('dist/browser/assets/images/' + filename)
         .then((image) => {
           const thumb = image.resize(100, Jimp.AUTO).greyscale().blur(1).quality(60);
-          thumb.getBufferAsync(Jimp.MIME_JPEG).then((d) => thumbs.push({name: filename, data: d}));
-          // console.log()
-          // performance.mark('resize s');
-          // image.resize(1024, Jimp.AUTO)
-          //     .getBufferAsync(Jimp.MIME_JPEG)
-          //     .then((d) => performance.mark('resize e'));
-          // performance.measure('resize', 'resize s', 'resize e');
-          // console.log(performance.getEntriesByName('resize')[0]);
+          thumb.getBufferAsync(Jimp.MIME_PNG).then((d) => thumbs.push({name: filename, data: d}));
           console.log('processed: ' + filename);
         })
         .catch((e) => console.error(e));
   }
 });
 
-
-// Express server
-const app = express();
-
-const PORT = process.env.PORT || 4000;
-const DIST_FOLDER = join(process.cwd(), 'dist');
+// covers
+const covers = [];
+Jimp.read(join(DIST_FOLDER, 'browser', 'assets', 'images', 'cover.png')).then((image) => {
+  const SIZES = [1440, 1024, 768, 425, 320];
+  for (const size of SIZES) {
+    image.resize(size, Jimp.AUTO)
+        .quality(100)
+        .getBufferAsync(Jimp.MIME_PNG)
+        .then((d: Buffer) => covers.push({size: size, data: d}));
+  }
+});
 
 const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main');
@@ -87,14 +81,36 @@ app.use((_req, res, next) => {
 });
 
 app.get('/thumbs/*', (req, res) => {
-  const thumb = thumbs.find(t => req.url.indexOf(t.name) > -1);
   console.log(req.url);
-  res.contentType('jpeg');
+  const thumb = thumbs.find(t => req.url.indexOf(t.name) > -1);
+  res.contentType('png');
+  res.header('Cache-Control', 'max-age=2629800');
   res.end(thumb.data, 'binary');
 });
 
+app.get('/cover', (req, res) => {
+  console.log(req.url);
+  console.log('requested size: ' + req.query.size);
+
+  res.contentType('png');
+  res.header('Cache-Control', 'max-age=2629800');
+
+  const size = parseInt(req.query.size, 10);
+
+  for (const cover of covers) {
+    if (size >= cover.size) {
+      res.end(cover.data, 'binary');
+      console.log('delivered size: ' + cover.size);
+      return;
+    }
+  }
+
+  console.log('delivered size: ' + covers[0].size);
+  res.end(covers[0].data, 'binary');
+});
+
 // Server static files from /browser
-app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
+app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), {maxAge: 31557600000}));
 
 // All regular routes use the Universal engine
 app.get('*', async (_req, res) => {

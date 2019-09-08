@@ -1,0 +1,8 @@
+{
+  "name": "stevevanopstal",
+  "version": "0.0.0",
+  "dependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  }
+}
