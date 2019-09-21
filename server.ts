@@ -7,7 +7,7 @@ import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import express from 'express';
-import {readdir, readFileSync} from 'fs';
+import {existsSync, readdir, readFileSync} from 'fs';
 import Jimp from 'jimp/es';
 import {join} from 'path';
 
@@ -19,7 +19,11 @@ const app = express();
 app.use(compression());
 
 const PORT = process.env.PORT || 3000;
-const DIST_FOLDER = join(process.cwd(), 'dist');
+let DIST_FOLDER = join(process.cwd(), 'dist');
+
+if (!existsSync(DIST_FOLDER)) {
+  DIST_FOLDER = join(process.cwd());
+}
 
 // thumbs
 const thumbs = [];
